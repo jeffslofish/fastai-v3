@@ -18,6 +18,8 @@ env.read_env()
 # Get export_file_url from environment variable. If its not there, look in .env file
 export_file_url = os.getenv('EXPORT_FILE_URL')
 if (export_file_url is None):
+    print("can not find export_file_url")
+    print(export_file_url)
     env('EXPORT_FILE_URL')
 export_file_name = 'export.pkl'
 
