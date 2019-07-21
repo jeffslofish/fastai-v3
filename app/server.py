@@ -67,7 +67,7 @@ async def analyze(request):
     formData = await request.form()
     bytesRead = await (formData['file'].read())
     prediction = learn.predict(bytesRead)
-    m = re.search('\(Category ([.\w]+), ', str(prediction))
+    m = re.search('\(Category ([\.\+\#\-\w]+), ', str(prediction))
     language = "Error"
     if (m is not None):
         language = m.group(1)
