@@ -9,8 +9,12 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 import re
+from dotenv import load_dotenv
+import os
 
-export_file_url = 'https://www.googleapis.com/drive/v3/files/1B8cb-g-eHqHJOzVk-JdPhqWyGBmh-l2r?alt=media&key=AIzaSyCA90w1IWcqqFmVeRypIEjvxj0vaP_JxuQ'
+load_dotenv()
+
+export_file_url = os.getenv("EXPORT_FILE_URL")
 export_file_name = 'export.pkl'
 
 classes = ['bash', 'c', 'c#', 'c++', 'css', 'haskell', 'html', 'java', 'javascript', 'lua', 'markdown', 'objective-c', 'perl', 'php', 'python', 'r', 'ruby', 'scala', 'sql', 'swift', 'vb.net']

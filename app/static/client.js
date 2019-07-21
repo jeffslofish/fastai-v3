@@ -3,6 +3,7 @@ var el = x => document.getElementById(x);
 function analyze(e) {
   e.preventDefault();
   el('analyze-button').innerHTML = 'Analyzing...';
+  el('result-label').innerHTML = '';
   var xhr = new XMLHttpRequest();
   var loc = window.location;
   xhr.open(
