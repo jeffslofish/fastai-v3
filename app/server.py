@@ -16,7 +16,9 @@ from pathlib import Path
 env = Env()
 env.read_env()
 # Get export_file_url from environment variable. If its not there, look in .env file
-export_file_url = os.getenv('EXPORT_FILE_URL') or env("EXPORT_FILE_URL")
+export_file_url = os.getenv('EXPORT_FILE_URL')
+if (export_file_url is None):
+    env('EXPORT_FILE_URL')
 export_file_name = 'export.pkl'
 
 classes = ['bash', 'c', 'c#', 'c++', 'css', 'haskell', 'html', 'java', 'javascript', 'lua', 'markdown', 'objective-c', 'perl', 'php', 'python', 'r', 'ruby', 'scala', 'sql', 'swift', 'vb.net']
