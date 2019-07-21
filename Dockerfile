@@ -10,7 +10,7 @@ RUN pip install --upgrade -r requirements.txt
 COPY app app/
 
 ARG EXPORT_FILE_URL
-ENV EXPORT_FILE_URL=$EXPORT_FILE_URL
+
 RUN python app/server.py
 
 EXPOSE 5000
