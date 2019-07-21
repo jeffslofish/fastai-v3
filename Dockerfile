@@ -1,5 +1,3 @@
-ARG EXPORT_FILE_URL
-
 FROM python:3.7-slim-stretch
 
 RUN apt-get update && apt-get install -y git python3-dev gcc \
@@ -11,7 +9,9 @@ RUN pip install --upgrade -r requirements.txt
 
 COPY app app/
 
-RUN python app/server.py -e EXPORT_FILE_URL=$EXPORT_FILE_URL
+ARG EXPORT_FILE_URL
+ENV EXPORT_FILE_URL=$EXPORT_FILE_URL
+RUN python app/server.py
 
 EXPOSE 5000
 
