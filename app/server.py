@@ -21,7 +21,8 @@ if (export_file_url is None):
     print("can not find export_file_url")
     env('EXPORT_FILE_URL')
 else:
-    export_file_url = export_file_url[3:len(export_file_url) - 2]
+    export_file_url = export_file_url[3:len(export_file_url) - 3]
+    print(export_file_url)
 export_file_name = 'export.pkl'
 
 classes = ['bash', 'c', 'c#', 'c++', 'css', 'haskell', 'html', 'java', 'javascript', 'lua', 'markdown', 'objective-c', 'perl', 'php', 'python', 'r', 'ruby', 'scala', 'sql', 'swift', 'vb.net']
