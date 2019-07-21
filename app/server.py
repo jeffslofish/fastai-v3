@@ -8,8 +8,9 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+import re
 
-export_file_url = 'https://www.googleapis.com/drive/v3/files/1B8cb-g-eHqHJOzVk-JdPhqWyGBmh-l2r?alt=media&key=AIzaSyCA90w1IWcqqFmVeRypIEjvxj0vaP_JxuQ'                   
+export_file_url = 'https://www.googleapis.com/drive/v3/files/1B8cb-g-eHqHJOzVk-JdPhqWyGBmh-l2r?alt=media&key=AIzaSyCA90w1IWcqqFmVeRypIEjvxj0vaP_JxuQ'
 export_file_name = 'export.pkl'
 
 classes = ['bash', 'c', 'c#', 'c++', 'css', 'haskell', 'html', 'java', 'javascript', 'lua', 'markdown', 'objective-c', 'perl', 'php', 'python', 'r', 'ruby', 'scala', 'sql', 'swift', 'vb.net']
@@ -57,12 +58,14 @@ async def homepage(request):
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
-    img_data = await request.form()
-    img_bytes = await (img_data['file'].read())
-    #img = open_image(BytesIO(img_bytes))
-    prediction = learn.predict(img_bytes)
-    return JSONResponse({'result': str(prediction)})
-
+    formData = await request.form()
+    bytesRead = await (formData['file'].read())
+    prediction = learn.predict(bytesRead)
+    m = re.search('\(Category ([.\w]+), ', str(prediction))
+    language = "Error"
+    if (m is not None):
+        language = m.group(1)
+    return JSONResponse({'result': str(language)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:

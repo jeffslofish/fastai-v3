@@ -21,7 +21,7 @@ body {
 }
 
 .content {
-    margin-top: 10em;
+    margin-top: 30px;
 }
 
 .analyze {
@@ -34,9 +34,10 @@ body {
 }
 
 .result-label {
+    font-size: 40px;
+    font-weight: bold;
     margin-top: 0.5em;
     padding: 10px;
-    font-size: 13px;
 }
 
 button.choose-file-button {
