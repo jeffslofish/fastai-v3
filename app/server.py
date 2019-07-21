@@ -21,7 +21,8 @@ if (export_file_url is None):
     print("can not find export_file_url")
     env('EXPORT_FILE_URL')
 else:
-    export_file_url = export_file_url[3:len(export_file_url) - 3]
+    print(export_file_url)
+    export_file_url = export_file_url[1:len(export_file_url) - 1]
     print(export_file_url)
 export_file_name = 'export.pkl'
 
