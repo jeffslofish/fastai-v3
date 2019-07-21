@@ -9,12 +9,14 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 import re
-from dotenv import load_dotenv
+from environs import Env
 import os
+from pathlib import Path
 
-load_dotenv()
-
-export_file_url = os.getenv("EXPORT_FILE_URL")
+env = Env()
+env.read_env()
+# Get export_file_url from environment variable. If its not there, look in .env file
+export_file_url = os.getenv('EXPORT_FILE_URL', env("EXPORT_FILE_URL"))
 export_file_name = 'export.pkl'
 
 classes = ['bash', 'c', 'c#', 'c++', 'css', 'haskell', 'html', 'java', 'javascript', 'lua', 'markdown', 'objective-c', 'perl', 'php', 'python', 'r', 'ruby', 'scala', 'sql', 'swift', 'vb.net']
